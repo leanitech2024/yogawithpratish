@@ -1,103 +1,167 @@
-import { Card, CardContent } from "./ui/card";
-import { FloatingParticles } from './ui/FloatingParticles';
-import './ui/FloatingParticles.css';
+import React from "react";
+// 1. Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 
-const teachings = [
+// 2. Import Swiper styles
+import "swiper/css";
+
+import {
+  FaLeaf,
+  FaHeartbeat,
+  FaBabyCarriage,
+  FaBalanceScale,
+} from "react-icons/fa";
+import { GiMeditation, GiLotus } from "react-icons/gi";
+
+// Data Setup
+const teachingsData = [
   {
-    title: "Asanas",
-    description: "Physical postures for strength, flexibility, and balance",
-    icon: "🧘‍♀️"
+    title: "Sacred Journey",
+    tagline: "Motherhood support",
+    description: "Gentle, nurturing practices for the beautiful journey of pregnancy and beyond.",
+    icon: "FaBabyCarriage",
   },
   {
-    title: "Pranayamas",
-    description: "Breathing techniques for energy and mental clarity",
-    icon: "🌬️"
+    title: "Mind & Soul",
+    tagline: "Inner peace & clarity",
+    description: "Release tension and cultivate deep tranquility through mindful movement and breath.",
+    icon: "GiMeditation",
   },
   {
-    title: "Meditations",
-    description: "Mindfulness practices for inner peace and awareness",
-    icon: "🕯️"
+    title: "Body Balance",
+    tagline: "Strength meets grace",
+    description: "Build lean muscle and enhance flexibility while honoring your body's natural wisdom.",
+    icon: "FaBalanceScale",
   },
   {
-    title: "Jal-Neti",
-    description: "Nasal cleansing for respiratory health and clarity",
-    icon: "💧"
+    title: "Women's Wellness",
+    tagline: "Feminine vitality",
+    description: "Nurture your feminine energy with practices designed for hormonal harmony.",
+    icon: "GiLotus",
   },
   {
-    title: "Yog Nidra",
-    description: "Yogic sleep for deep relaxation and healing",
-    icon: "💤"
+    title: "Vital Energy",
+    tagline: "Natural healing",
+    description: "Support your body's natural healing processes through therapeutic movement.",
+    icon: "FaLeaf",
   },
   {
-    title: "Breathing Techniques",
-    description: "Advanced breath work for stress relief and vitality",
-    icon: "🍃"
-  }
+    title: "Heart & Flow",
+    tagline: "Cardiovascular harmony",
+    description: "Strengthen your heart through gentle, flowing sequences that enhance circulation.",
+    icon: "FaHeartbeat",
+  },
 ];
 
-function TeachingsSection() {
+const IconMap = {
+  FaLeaf: FaLeaf,
+  FaHeartbeat: FaHeartbeat,
+  FaBabyCarriage: FaBabyCarriage,
+  GiMeditation: GiMeditation,
+  FaBalanceScale: FaBalanceScale,
+  GiLotus: GiLotus,
+};
+
+const colorThemes = [
+  { bg: "bg-[#FFF9E5]", tagBg: "bg-[#FCEFC7]", tagText: "text-[#856404]", iconColor: "text-[#F59E0B]" },
+  { bg: "bg-[#E6F2FF]", tagBg: "bg-[#CCE5FF]", tagText: "text-[#004085]", iconColor: "text-[#3B82F6]" },
+  { bg: "bg-[#E8F8EE]", tagBg: "bg-[#C3E6CB]", tagText: "text-[#155724]", iconColor: "text-[#10B981]" },
+  { bg: "bg-[#F5E6FF]", tagBg: "bg-[#E0CFFC]", tagText: "text-[#4A1D96]", iconColor: "text-[#D946EF]" },
+  { bg: "bg-[#FFF0F0]", tagBg: "bg-[#FADBD8]", tagText: "text-[#721C24]", iconColor: "text-[#EF4444]" },
+  { bg: "bg-[#FFF5EB]", tagBg: "bg-[#FTE0C6]", tagText: "text-[#856404]", iconColor: "text-[#F97316]" },
+];
+
+const TeachingsSection = () => {
   return (
-    <div className="teachings-container section-with-particles">
-      <FloatingParticles 
-        particleCount={70}
-        color="#d4af37"
-        opacity={0.4}
-        speed={0.35}
-        size={0.9}
-        containerClass="teachings-particles"
-      />
-      
-      <section className="py-16 md:py-20 px-4 md:px-6 bg-[#DCE5DC]/15 relative">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif mb-4 text-[#333333]">
-              What I <span className="text-[#D4A373]">Teach</span>
-            </h2>
-            <div className="w-16 md:w-20 h-1 bg-[#3A5A40] mx-auto mb-4 md:mb-6"></div>
-            <p className="text-base md:text-lg text-[#333333]/80 max-w-2xl mx-auto px-4">
-              Comprehensive yoga education combining ancient wisdom with modern understanding
-            </p>
-          </div>
+    <section className="py-20 bg-white relative">
+      {/* Style Injection for Linear Easing (Smooth Marquee) */}
+      <style>{`
+        .swiper-wrapper {
+          transition-timing-function: linear !important;
+        }
+      `}</style>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {teachings.map((teaching, index) => (
-              <Card 
-                key={index} 
-                className="group hover:shadow-xl transition-all duration-300 border-none bg-white/85 backdrop-blur-sm hover:bg-white/95 hover:scale-105 transform h-full"
-              >
-                <CardContent className="p-6 md:p-8 text-center h-full flex flex-col justify-center">
-                  <div className="text-3xl md:text-4xl mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300">
-                    {teaching.icon}
+      <div className="container mx-auto px-4 mb-12 text-center max-w-3xl">
+        <h2 className="text-4xl md:text-5xl font-serif text-[#2D3748] mb-4">
+          Healing Through Movement
+        </h2>
+        <p className="text-gray-500 text-lg md:text-xl font-light">
+          Ancient practices for modern wellness. Discover how yoga can transform
+          your health and elevate your spirit.
+        </p>
+      </div>
+
+      <div className="relative w-full max-w-[1400px] mx-auto px-4 md:px-12">
+        
+        {/* Wrapper with Mask Image for Fading Edges.
+           Changed to 5% / 95% to make the blur effect smaller/shorter.
+        */}
+        <div className="[mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)] py-4">
+          <Swiper
+            modules={[Autoplay]}
+            loop={true}
+            spaceBetween={30}
+            // Speed = 4000ms (4 seconds) for a smooth, continuous flow
+            speed={4000} 
+            autoplay={{
+              delay: 0, 
+              disableOnInteraction: false, 
+              pauseOnMouseEnter: true,
+            }}
+            breakpoints={{
+              640: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+              1280: { slidesPerView: 3.5 },
+            }}
+            className="!px-4"
+          >
+            {teachingsData.map((item, index) => {
+              const theme = colorThemes[index % colorThemes.length];
+              const IconComponent = IconMap[item.icon] || FaLeaf;
+
+              return (
+                <SwiperSlide key={index} className="h-auto">
+                  <div
+                    className={`
+                      h-full
+                      ${theme.bg} 
+                      rounded-3xl p-8 
+                      flex flex-col items-center text-center 
+                      transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg
+                      select-none cursor-grab active:cursor-grabbing
+                    `}
+                  >
+                    <div className="bg-white p-4 rounded-2xl shadow-sm mb-6">
+                      <IconComponent className={`text-3xl ${theme.iconColor}`} />
+                    </div>
+
+                    <h3 className="text-2xl font-serif text-gray-800 mb-2">
+                      {item.title}
+                    </h3>
+
+                    <span
+                      className={`
+                        inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase mb-4
+                        ${theme.tagBg} ${theme.tagText}
+                      `}
+                    >
+                      {item.tagline}
+                    </span>
+
+                    <p className="text-gray-600 leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
-                  <h3 className="text-lg md:text-xl font-serif mb-2 md:mb-3 text-[#333333] group-hover:text-[#D4A373] transition-colors">
-                    {teaching.title}
-                  </h3>
-                  <p className="text-sm md:text-base text-[#333333]/70 leading-relaxed">
-                    {teaching.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* Additional CTA Section */}
-          <div className="text-center mt-12 md:mt-16">
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 max-w-3xl mx-auto shadow-lg">
-              <h3 className="text-xl md:text-2xl font-serif mb-3 md:mb-4 text-[#333333]">
-                Learn from <span className="text-[#D4A373]">Traditional Wisdom</span>
-              </h3>
-              <p className="text-[#333333]/80 mb-4 md:mb-6 text-sm md:text-base">
-                Each teaching is rooted in authentic yogic traditions, adapted for modern practitioners seeking holistic wellness
-              </p>
-              <button className="bg-[#3A5A40] hover:bg-[#D4A373] text-white px-6 md:px-8 py-2 md:py-3 rounded-lg transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 text-sm md:text-base">
-                Explore My Teachings
-              </button>
-            </div>
-          </div>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
-}
+};
 
 export default TeachingsSection;

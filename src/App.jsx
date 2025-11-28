@@ -31,6 +31,9 @@ import FreeTrial from "./pages/FreeTrial";
 import Cart from "./components/Cart";
 import { MyContextProvider } from "./context/Context.jsx";
 import Ourteam from "./components/Ourteam";
+import LivingInHarmony from "./components/LivingInHarmony.jsx";
+import NourishingWisdomSection from "./components/NourishingWisdomSection.jsx";
+import PracticeLibrary from "./components/PracticeLibrary.jsx";
 
 function App() {
   return (
@@ -80,10 +83,13 @@ function Home() {
     <>
       <Hero />
       <TeachingsSection />
-      <ClassFlowSection />
-      <WellnessSection />
-      <YouTubeSection />
+      <LivingInHarmony/>
+      <NourishingWisdomSection/>
       <Gallery />
+      <ClassFlowSection />
+      {/* <WellnessSection /> */}
+      <YouTubeSection />
+      <PracticeLibrary/>
       <Feedback />
       <Contacts />
     </>

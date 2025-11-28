@@ -1,9 +1,24 @@
-import { useState } from 'react';
-import { FloatingParticles } from './ui/FloatingParticles';
-import './ui/FloatingParticles.css';
+import React, { useState } from "react";
+import { FaYoutube, FaPlay } from "react-icons/fa";
+import logo from "../assets/images/logo-new.png"; 
 
-function YouTubeSection() {
-  // Your actual YouTube videos data with correct video IDs
+// If you want to keep particles, uncomment these lines:
+// import { FloatingParticles } from './ui/FloatingParticles'; 
+// import './ui/FloatingParticles.css';
+
+const YouTubeSection = () => {
+  // Data Configuration
+  const channelInfo = {
+    name: "YOGA WITH PRATISH",
+    handle: "@yogawithpratish2509",
+    stats: "40 subscribers • 13 videos",
+    description:
+      "I have created this channel to upload videos about yoga and its benefits. Join me for authentic yoga practices and wellness guidance.",
+    channelUrl: "https://www.youtube.com/channel/UCBBxIfTOUMkUDL-vm4kdJhA",
+    website: "yogawithpratish.com",
+    avatar: logo, // Using the imported logo here
+  };
+
   const youtubeVideos = [
     {
       id: "1",
@@ -12,218 +27,205 @@ function YouTubeSection() {
       duration: "0:41",
       views: "152 views",
       uploadTime: "2 years ago",
-      videoId: "W8LMHFerAC4" // You'll need to replace this with actual video ID
+      videoId: "W8LMHFerAC4",
     },
-    // {
-    //   id: "2", 
-    //   title: "yoga for a healthy mind and body @yogawithpratish",
-    //   thumbnail: "https://img.youtube.com/vi/eRVM2NqZtIA/maxresdefault.jpg",
-    //   duration: "0:50",
-    //   views: "294 views", 
-    //   uploadTime: "2 years ago",
-    //   videoId: "eRVM2NqZtIA" // You'll need to replace this with actual video ID
-    // },
+
+    
+   {
+        
+         id: "2",
+    
+     title: "yoga for a healthy mind and body @yogawithpratish",
+    
+     thumbnail: "https://img.youtube.com/vi/eRVM2NqZtIA/maxresdefault.jpg",
+      duration: "0:50",
+
+     views: "294 views",
+
+     uploadTime: "2 years ago",
+
+      videoId: "eRVM2NqZtIA" // You'll need to replace this with actual video ID
+
+    },
+
+
     {
       id: "3",
       title: "What is Yoga? | Meaning and Origin | Traditional Yoga",
       thumbnail: "https://img.youtube.com/vi/dT63aLZygW4/maxresdefault.jpg",
       duration: "3:22",
       views: "169 views",
-      uploadTime: "3 years ago", 
-      videoId: "dT63aLZygW4" // You'll need to replace this with actual video ID
+      uploadTime: "3 years ago",
+      videoId: "dT63aLZygW4",
     },
     {
       id: "4",
-      title: "Anulom Vilom | You may be doing it wrong! | Yogic Breathing #yoga #quick #lifestyle",
+      title: "Anulom Vilom | You may be doing it wrong! | Yogic Breathing",
       thumbnail: "https://img.youtube.com/vi/Z3MD0HvcR3M/maxresdefault.jpg",
       duration: "6:32",
       views: "117 views",
       uploadTime: "3 years ago",
-      videoId: "Z3MD0HvcR3M" // You'll need to replace this with actual video ID
+      videoId: "Z3MD0HvcR3M",
     },
     {
       id: "5",
-      title: "How a yoga session must be practiced | Correct way to practice yoga | #yoga",
+      title: "How a yoga session must be practiced | Correct way to practice yoga",
       thumbnail: "https://img.youtube.com/vi/vzvVX-8Dnfk/maxresdefault.jpg",
       duration: "46:27",
       views: "85 views",
       uploadTime: "3 years ago",
-      videoId: "vzvVX-8Dnfk" // You'll need to replace this with actual video ID
+      videoId: "vzvVX-8Dnfk",
     },
     {
       id: "6",
-      title: "Yoga With Pratish | Join Yoga Classes Online | Learn Traditional Art of Yoga | #yoga",
+      title: "Yoga With Pratish | Join Yoga Classes Online | Learn Traditional Art of Yoga",
       thumbnail: "https://img.youtube.com/vi/0p3VLYhW7Wk/maxresdefault.jpg",
       duration: "3:22",
       views: "206 views",
       uploadTime: "3 years ago",
-      videoId: "0p3VLYhW7Wk" // You'll need to replace this with actual video ID
-    }
+      videoId: "0p3VLYhW7Wk",
+    },
   ];
 
   const [selectedVideo, setSelectedVideo] = useState(null);
 
-  const openVideo = (videoId) => {
-    setSelectedVideo(videoId);
-  };
-
-  const closeVideo = () => {
-    setSelectedVideo(null);
-  };
-
-  // Channel ID for your YouTube channel
-  const channelId = "UCBBxIfTOUMkUDL-vm4kdJhA";
-
   return (
-    <div className="youtube-container section-with-particles">
-      <FloatingParticles 
-        particleCount={60}
-        color="#ff0000"
-        opacity={0.3}
-        speed={0.3}
-        size={0.8}
-        containerClass="youtube-particles"
-      />
+    <div className="relative bg-[#FAFAFA] min-h-screen">
       
-      <section className="py-16 md:py-20 px-4 md:px-6 bg-gradient-to-b from-[#f8f9fa] to-[#e9ecef] relative">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif mb-4 text-[#333333]">
-              YouTube <span className="text-[#ff0000]">Videos</span>
-            </h2>
-            <div className="w-16 md:w-20 h-1 bg-[#ff0000] mx-auto mb-4 md:mb-6"></div>
-            <p className="text-base md:text-lg text-[#333333]/80 max-w-2xl mx-auto px-4">
-              Visit our YouTube channel for yoga tutorials and wellness content
-            </p>
-            <a 
-              href={`https://www.youtube.com/channel/${channelId}`}
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center mt-6 bg-[#ff0000] hover:bg-[#cc0000] text-white px-6 md:px-8 py-3 rounded-lg transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
-            >
-              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-              </svg>
-              Visit YouTube Channel
-            </a>
-          </div>
-
-          {/* Video Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {youtubeVideos.map((video, index) => (
-              <div 
-                key={video.id}
-                className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer transform hover:scale-105"
-                onClick={() => openVideo(video.videoId)}
-              >
-                {/* Thumbnail */}
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={video.thumbnail}
-                    alt={video.title}
-                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
-                    onError={(e) => {
-                      // Fallback to different thumbnail qualities
-                      if (e.target.src.includes('maxresdefault')) {
-                        e.target.src = e.target.src.replace('maxresdefault', 'hqdefault');
-                      } else if (e.target.src.includes('hqdefault')) {
-                        e.target.src = e.target.src.replace('hqdefault', 'mqdefault');
-                      } else {
-                        // Final fallback to a yoga-themed placeholder
-                        e.target.src = `https://via.placeholder.com/480x270/D4A373/ffffff?text=Yoga+Video+${index + 1}`;
-                      }
-                    }}
-                  />
-                  {/* Play Button Overlay */}
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300 flex items-center justify-center">
-                    <div className="w-16 h-16 bg-[#ff0000] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z"/>
-                      </svg>
-                    </div>
-                  </div>
-                  {/* Duration Badge */}
-                  <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded">
-                    {video.duration}
-                  </div>
-                </div>
-
-                {/* Video Info */}
-                <div className="p-4">
-                  <h3 className="font-semibold text-[#333333] mb-2 line-clamp-2 group-hover:text-[#ff0000] transition-colors leading-tight">
-                    {video.title}
-                  </h3>
-                  <div className="flex items-center text-sm text-[#666] space-x-2">
-                    <span>{video.views}</span>
-                    <span>•</span>
-                    <span>{video.uploadTime}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Channel Info */}
-          <div className="mt-12 md:mt-16 text-center">
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 md:p-8 max-w-4xl mx-auto shadow-lg border border-[#ddd]">
-              <div className="flex items-center justify-center mb-4">
-                <div className="w-16 h-16 bg-[#ff0000] rounded-full flex items-center justify-center mr-4">
-                  <span className="text-2xl">🧘‍♂️</span>
-                </div>
-                <div className="text-left">
-                  <h3 className="text-xl font-serif text-[#333333]">
-                    YOGA WITH PRATISH
-                  </h3>
-                  <p className="text-[#666] text-sm">@yogawithpratish2509</p>
-                  <p className="text-[#666] text-sm">40 subscribers • 13 videos</p>
-                </div>
-              </div>
-              <p className="text-[#333333]/80 mb-4 text-sm md:text-base">
-                I have created this channel to upload videos about yoga and its benefits. Join me for authentic yoga practices and wellness guidance.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <a 
-                  href="https://yogawithpratish.com" 
-                  className="text-[#ff0000] hover:text-[#cc0000] transition-colors text-sm"
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  yogawithpratish.com
-                </a>
-                <span className="text-[#666] text-sm">and 3 more links</span>
-              </div>
-            </div>
-          </div>
+      <section className="py-16 px-4 md:px-8 relative z-10 max-w-7xl mx-auto font-sans">
+        
+        {/* 1. HEADER SECTION */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-serif text-gray-900 mb-2">
+            YouTube <span className="text-red-600">Videos</span>
+          </h2>
+          {/* Red Underline */}
+          <div className="w-16 h-1 bg-red-600 mx-auto mb-6"></div>
+          <p className="text-gray-600 text-lg">
+            Visit our YouTube channel for yoga tutorials and wellness content
+          </p>
         </div>
 
-        {/* Video Modal */}
-        {selectedVideo && (
-          <div 
-            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
-            onClick={closeVideo}
+        {/* 2. CHANNEL CARD */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 max-w-3xl mx-auto mb-16 text-center">
+          {/* Avatar */}
+          <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border border-gray-100 shadow-sm relative">
+             <img 
+               src={channelInfo.avatar} 
+               alt="Channel Logo" 
+               className="w-full h-full object-cover"
+             />
+          </div>
+
+          {/* Channel Details */}
+          <h3 className="text-2xl font-serif text-gray-800 mb-1 tracking-wide">
+            {channelInfo.name}
+          </h3>
+          <div className="text-gray-500 text-sm mb-4">
+            <span className="font-medium text-gray-700">{channelInfo.handle}</span>
+            <span className="mx-2">•</span>
+            <span>{channelInfo.stats}</span>
+          </div>
+
+          <p className="text-gray-600 text-sm md:text-base max-w-xl mx-auto mb-6 leading-relaxed">
+            {channelInfo.description}
+          </p>
+
+          {/* Links */}
+          <div className="flex justify-center gap-4 text-sm mb-8">
+             <a href={`https://${channelInfo.website}`} className="text-red-600 hover:underline font-medium">
+               {channelInfo.website}
+             </a>
+             <span className="text-gray-400">and 3 more links</span>
+          </div>
+
+          {/* Subscribe / Visit Button */}
+          <a
+            href={channelInfo.channelUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-[#CC0000] hover:bg-[#FF0000] text-white px-8 py-3 rounded-full font-medium transition-colors shadow-sm"
           >
-            <div className="relative max-w-4xl w-full">
-              <button 
-                onClick={closeVideo}
-                className="absolute -top-12 right-0 text-white text-2xl hover:text-[#ff0000] transition-colors"
-              >
-                ✕
-              </button>
-              <div className="relative pb-[56.25%] h-0">
-                <iframe 
-                  src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1`}
-                  className="absolute top-0 left-0 w-full h-full rounded-lg"
-                  frameBorder="0"
-                  allowFullScreen
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            <FaYoutube className="text-xl" />
+            Visit YouTube Channel
+          </a>
+        </div>
+
+
+        {/* 3. VIDEO GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
+          {youtubeVideos.map((video) => (
+            <div
+              key={video.id}
+              className="group cursor-pointer flex flex-col gap-3"
+              onClick={() => setSelectedVideo(video.videoId)}
+            >
+              {/* Thumbnail Container */}
+              <div className="relative w-full aspect-video bg-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all">
+                <img
+                  src={video.thumbnail}
+                  alt={video.title}
+                  className="w-full h-full object-cover"
                 />
+                
+                {/* Duration Badge */}
+                <div className="absolute bottom-1 right-1 bg-black/80 text-white text-xs font-medium px-1.5 py-0.5 rounded-[4px]">
+                  {video.duration}
+                </div>
+
+                {/* Red Play Button Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/10 transition-all duration-300">
+                  <div className="w-12 h-12 bg-[#FF0000] rounded-full flex items-center justify-center opacity-90 group-hover:scale-110 transition-transform shadow-lg">
+                    <FaPlay className="text-white text-sm ml-1" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Video Info */}
+              <div className="flex flex-col px-1">
+                <h4 className="text-gray-900 font-semibold text-lg leading-snug line-clamp-2 group-hover:text-red-600 transition-colors">
+                  {video.title}
+                </h4>
+                <div className="text-gray-600 text-sm mt-1">
+                  <span>{video.views}</span>
+                  <span className="mx-1">•</span>
+                  <span>{video.uploadTime}</span>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          ))}
+        </div>
+
       </section>
+
+      {/* 4. VIDEO MODAL */}
+      {selectedVideo && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
+          onClick={() => setSelectedVideo(null)}
+        >
+          <div className="relative w-full max-w-5xl aspect-video bg-black rounded-lg overflow-hidden shadow-2xl">
+            <button
+              onClick={() => setSelectedVideo(null)}
+              className="absolute top-4 right-4 text-white/70 hover:text-white z-10 bg-black/50 rounded-full p-2"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <iframe
+              src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1`}
+              title="YouTube video player"
+              className="w-full h-full"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default YouTubeSection;
