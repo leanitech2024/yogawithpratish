@@ -1,4 +1,4 @@
-import { Outlet, Link, useNavigate } from "react-router-dom";
+import { Outlet, Link, NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FcMenu } from "react-icons/fc";
 import { GrClose } from "react-icons/gr";
@@ -74,55 +74,50 @@ function Navbar() {
               </Link>
             </li>
             <li className="item">
-              <Link
+              <NavLink
                 to="/aboutme"
-                className="links link-color"
-                activeClassName="active-link"
+                className={({ isActive }) => `links link-color ${isActive ? "active-link" : ""}`}
                 onClick={toggleNav}
               >
                 About
-              </Link>
+              </NavLink>
             </li>
             <li className="item">
-              <Link
+              <NavLink
                 to="/my-teachings"
-                className="links link-color"
-                activeClassName="active-link"
+                className={({ isActive }) => `links link-color ${isActive ? "active-link" : ""}`}
                 onClick={toggleNav}
               >
                 My Teachings
-              </Link>
+              </NavLink>
             </li>
             <li className="item">
-              <Link
+              <NavLink
                 to="/services"
-                className="links link-color"
-                activeClassName="active-link"
+                className={({ isActive }) => `links link-color ${isActive ? "active-link" : ""}`}
                 onClick={toggleNav}
               >
                 Services
-              </Link>
+              </NavLink>
             </li>
             <li className="item">
-              <Link
+              <NavLink
                 to="/batch-timings"
-                className="links link-color"
-                activeClassName="active-link"
+                className={({ isActive }) => `links link-color ${isActive ? "active-link" : ""}`}
                 onClick={toggleNav}
               >
                 Batch Timings
-              </Link>
+              </NavLink>
             </li>
             <li className="contact-btn item">
               <button>
-                <Link
+                <NavLink
                   to="/contact"
-                  className="links"
-                  activeClassName="active-link"
+                  className={({ isActive }) => `links ${isActive ? "active-link" : ""}`}
                   onClick={toggleNav}
                 >
                   Contact
-                </Link>
+                </NavLink>
               </button>
             </li>
           </ul>

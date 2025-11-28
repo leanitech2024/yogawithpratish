@@ -1,7 +1,7 @@
 /* Yoga Hero Section Styles */
 .yoga-hero-container {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh; /* Only take hero space */
   overflow: hidden;
   background: linear-gradient(135deg, #f7f4f1 0%, #ece8e7 50%, #d4c5b7 100%);
@@ -11,7 +11,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   z-index: 1;
   pointer-events: none;
@@ -22,7 +22,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;

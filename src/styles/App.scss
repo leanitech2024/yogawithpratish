@@ -2,6 +2,13 @@
 @import "mixin";
 @import "media-query";
 
+/* App container - prevent horizontal scroll */
+.app {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
 /* ++++++++++ Start of Navbar Component style sheet ++++++++++ */
 .navbar-container {
   position: sticky;
@@ -113,6 +120,9 @@
 
 /* ++++++++++ Start of Hero Component style sheet ++++++++++ */
 .hero-container {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
   .hero {
     display: flex;
     /*     justify-content: space-between;

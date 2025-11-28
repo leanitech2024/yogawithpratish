@@ -10,6 +10,20 @@
   box-sizing: border-box;
 }
 
+/* Prevent horizontal scrollbar */
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+#root {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
 /* Root  pre-defined style*/
 :root {
   font-size: calc(1rem + 0.5vw, 1.5rem);

@@ -29,26 +29,15 @@ const YouTubeSection = () => {
       uploadTime: "2 years ago",
       videoId: "W8LMHFerAC4",
     },
-
-    
-   {
-        
-         id: "2",
-    
-     title: "yoga for a healthy mind and body @yogawithpratish",
-    
-     thumbnail: "https://img.youtube.com/vi/eRVM2NqZtIA/maxresdefault.jpg",
+    {
+      id: "2",
+      title: "yoga for a healthy mind and body @yogawithpratish",
+      thumbnail: "https://img.youtube.com/vi/eRVM2NqZtIA/maxresdefault.jpg",
       duration: "0:50",
-
-     views: "294 views",
-
-     uploadTime: "2 years ago",
-
-      videoId: "eRVM2NqZtIA" // You'll need to replace this with actual video ID
-
+      views: "294 views",
+      uploadTime: "2 years ago",
+      videoId: "eRVM2NqZtIA",
     },
-
-
     {
       id: "3",
       title: "What is Yoga? | Meaning and Origin | Traditional Yoga",
@@ -166,6 +155,16 @@ const YouTubeSection = () => {
                   src={video.thumbnail}
                   alt={video.title}
                   className="w-full h-full object-cover"
+                  onError={(e) => {
+                    // Fallback to hqdefault if maxresdefault fails
+                    const fallbackUrl = video.thumbnail.replace('maxresdefault.jpg', 'hqdefault.jpg');
+                    if (e.target.src !== fallbackUrl) {
+                      e.target.src = fallbackUrl;
+                    } else {
+                      // If hqdefault also fails, use a placeholder
+                      e.target.src = 'https://via.placeholder.com/640x360?text=Video+Thumbnail';
+                    }
+                  }}
                 />
                 
                 {/* Duration Badge */}

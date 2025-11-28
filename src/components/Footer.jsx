@@ -31,24 +31,25 @@ function Footer() {
 
   return (
     <>
-      {/* Enhanced Footer Component */}
       <FooterSection />
-      
-      {/* Scroll to Top Button */}
+
       <AnimatePresence>
         {isVisible && (
           <motion.button
-            className="fixed bottom-8 right-8 z-50 p-4 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-full shadow-2xl hover:from-red-600 hover:to-red-700 transition-all duration-300 group"
+            // 1. Fixed width/height + flex center ensures perfect circle
+            className="fixed bottom-8 right-8 z-50 flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 group border-2 border-white/20"
             onClick={scrollToTop}
-            initial={{ opacity: 0, scale: 0, rotate: -180 }}
+            initial={{ opacity: 0, scale: 0, rotate: 180 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             exit={{ opacity: 0, scale: 0, rotate: 180 }}
-            whileHover={{ scale: 1.1, y: -5 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            whileHover={{ y: -5 }}
+            whileTap={{ scale: 0.9 }}
           >
-            <FaArrowUp className="w-5 h-5 group-hover:animate-bounce text-white" />
-            <div className="absolute inset-0 bg-gradient-to-r from-red-400 to-red-500 rounded-full blur-lg opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
+            {/* 2. Glow Effect - Positioned absolutely but with negative z-index or behind content */}
+            <div className="absolute inset-0 rounded-full bg-red-600 blur-md opacity-40 group-hover:opacity-80 transition-opacity duration-300 -z-10"></div>
+
+            {/* 3. Icon - relative and z-10 ensures it sits ON TOP of the glow/bg */}
+            <FaArrowUp className="w-5 h-5 md:w-6 md:h-6 text-white relative z-10 group-hover:animate-bounce" />
           </motion.button>
         )}
       </AnimatePresence>
