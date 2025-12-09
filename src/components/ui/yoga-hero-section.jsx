@@ -591,9 +591,10 @@ export const YogaHeroSection = () => {
         </div> */}
 
         {/* Floating Action Buttons */}
-        <div className="mt-44 md:mt-0  " style={{ 
+        <div className="mt-44 md:mt-0" style={{ 
           opacity: scrollProgress < 0.3 ? 1 : 0,
-          visibility: scrollProgress < 0.3 ? 'visible' : 'hidden'
+          visibility: scrollProgress < 0.3 ? 'visible' : 'hidden',
+          pointerEvents: scrollProgress < 0.3 ? 'auto' : 'none'
         }}>
           <div className="credentials-banner mb-8">
             <span className="credentials-text">Certified YTTC-200 • Transforming Lives Since 2014</span>
@@ -602,21 +603,23 @@ export const YogaHeroSection = () => {
           
 
 
-<Link 
-  to="/free-trial" 
-  className="floating-btn trial-btn flex items-center gap-3 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full shadow-lg transition-all duration-300 group"
+<a 
+  href="https://docs.google.com/forms/d/e/1FAIpQLSdC7gotFoh3hJbzKwj7QiF4oaObg2gjVGnNS4xVQIM-mmOsUQ/viewform"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="floating-btn trial-btn group"
 >
-  <FaLeaf className="text-xl group-hover:scale-110 transition-transform" />
-  <span className="font-semibold tracking-wide">Start Free Trial</span>
-  <FaArrowRightLong className="opacity-80 group-hover:translate-x-1 transition-transform" />
-</Link>
+  <FaLeaf className="btn-icon" />
+  <span className="btn-text">Start Free Trial</span>
+  <FaArrowRightLong className="btn-arrow" />
+</a>
 
 <Link 
   to="/batch-timings" 
-  className="floating-btn session-btn flex items-center gap-3 border border-gray-300 text-gray-800 px-6 py-3 rounded-full bg-white hover:bg-gray-100 shadow-sm transition-all duration-300"
+  className="floating-btn session-btn"
 >
-  <FaRegCalendarCheck className="text-xl text-green-700" />
-  <span className="font-semibold tracking-wide">Book a Session</span>
+  <FaRegCalendarCheck className="btn-icon" />
+  <span className="btn-text">Book a Session</span>
 </Link>
           </div>
         </div>

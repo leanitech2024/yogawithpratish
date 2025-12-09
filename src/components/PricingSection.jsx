@@ -6,7 +6,8 @@ const pricingPlans = [
   {
     name: "Starter",
     frequency: "2 Days/week",
-    price: "₹8,000",
+    price: "₹15,000",
+    priceUSD:"$180",
     period: "Monthly",
     description: "Perfect for beginners starting their yoga journey",
     features: [
@@ -23,7 +24,8 @@ const pricingPlans = [
   {
     name: "Professional", 
     frequency: "3 Days/week",
-    price: "₹12,000",
+    price: "₹30,000",
+    priceUSD:"$360",
     period: "Monthly",
     description: "Ideal for consistent practice and steady progress",
     features: [
@@ -42,7 +44,8 @@ const pricingPlans = [
   {
     name: "Champion",
     frequency: "5 Days/week", 
-    price: "₹20,000",
+    price: "₹60,000",
+    priceUSD:"$720",
     period: "Monthly",
     description: "Complete transformation package for dedicated practitioners",
     features: [
@@ -92,8 +95,14 @@ export function PricingSection() {
                   {plan.name}
                 </CardTitle>
                 <p className="text-[#3A5A40] font-semibold mb-4">{plan.frequency}</p>
-                <div className="mb-4">
+                <div className="">
                   <span className="text-4xl font-bold text-[#333333]">{plan.price}</span>
+                  
+                  <span className="text-[#333333]/60 ml-2">/{plan.period}</span>
+                </div>
+                <div className="mb-4">
+                  <span className="text-xl font-bold text-[#333333]">{plan.priceUSD}</span>
+                  
                   <span className="text-[#333333]/60 ml-2">/{plan.period}</span>
                 </div>
                 <p className="text-sm text-[#333333]/80">{plan.description}</p>
