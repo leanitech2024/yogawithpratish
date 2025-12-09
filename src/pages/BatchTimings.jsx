@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
+import { Link } from 'react-router-dom';
 
 const batchTimings = [
   { time: "6:00 - 7:00 AM", status: "available", spots: 3 },
@@ -136,6 +137,7 @@ const BatchTimings = () => {
                           }
                         </p>
                         {batch.status === "available" && (
+                          <a href='https://docs.google.com/forms/d/e/1FAIpQLSdC7gotFoh3hJbzKwj7QiF4oaObg2gjVGnNS4xVQIM-mmOsUQ/viewform' target='_blank'>
                           <motion.button 
                             className="mt-2 px-6 py-2 bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
                             whileHover={{ scale: 1.05 }}
@@ -143,6 +145,7 @@ const BatchTimings = () => {
                           >
                             Book Now
                           </motion.button>
+                          </a>
                         )}
                         {batch.status === "full" && (
                           <motion.button 
