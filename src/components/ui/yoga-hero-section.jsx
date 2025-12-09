@@ -581,21 +581,21 @@ export const YogaHeroSection = () => {
         </div>
 
         {/* CTA Buttons */}
-        <div ref={ctaRef} className="yoga-hero-cta" style={{ visibility: 'hidden' }}>
+       {/*  <div ref={ctaRef} className="yoga-hero-cta" style={{ visibility: 'hidden' }}>
           <Link to="/services" className="cta-primary">
             Begin Your Journey
           </Link>
           <Link to="/demo" className="cta-outline">
             Book Free Session
           </Link>
-        </div>
+        </div> */}
 
         {/* Floating Action Buttons */}
-        <div className="floating-action-buttons" style={{ 
+        <div className="mt-44 md:mt-0  " style={{ 
           opacity: scrollProgress < 0.3 ? 1 : 0,
           visibility: scrollProgress < 0.3 ? 'visible' : 'hidden'
         }}>
-          <div className="credentials-banner">
+          <div className="credentials-banner mb-8">
             <span className="credentials-text">Certified YTTC-200 • Transforming Lives Since 2014</span>
           </div>
           <div className="floating-buttons">
