@@ -16,10 +16,10 @@ export const YogaHeroSection = () => {
 
   const smoothCameraPos = useRef({ x: 0, y: 30, z: 100 });
   const cameraVelocity = useRef({ x: 0, y: 0, z: 0 });
-  
+
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isReady, setIsReady] = useState(false);
-  
+
   const threeRefs = useRef({
     scene: null,
     camera: null,
@@ -35,7 +35,7 @@ export const YogaHeroSection = () => {
   useEffect(() => {
     const initThree = () => {
       const { current: refs } = threeRefs;
-      
+
       // Scene setup with warm yoga atmosphere
       refs.scene = new THREE.Scene();
       refs.scene.fog = new THREE.FogExp2(0xf7f4f1, 0.00015);
@@ -76,7 +76,7 @@ export const YogaHeroSection = () => {
 
       // Start animation
       animate();
-      
+
       // Mark as ready
       setIsReady(true);
     };
@@ -84,7 +84,7 @@ export const YogaHeroSection = () => {
     const createFloatingParticles = () => {
       const { current: refs } = threeRefs;
       const particleCount = 2000;
-      
+
       for (let i = 0; i < 2; i++) {
         const geometry = new THREE.BufferGeometry();
         const positions = new Float32Array(particleCount * 3);
@@ -110,7 +110,7 @@ export const YogaHeroSection = () => {
           } else {
             color.setHSL(0.05, 0.5, 0.85); // Light orange
           }
-          
+
           colors[j * 3] = color.r;
           colors[j * 3 + 1] = color.g;
           colors[j * 3 + 2] = color.b;
@@ -176,7 +176,7 @@ export const YogaHeroSection = () => {
 
     const createLotusField = () => {
       const { current: refs } = threeRefs;
-      
+
       const geometry = new THREE.PlaneGeometry(6000, 3000, 80, 80);
       const material = new THREE.ShaderMaterial({
         uniforms: {
@@ -235,7 +235,7 @@ export const YogaHeroSection = () => {
 
     const createZenMountains = () => {
       const { current: refs } = threeRefs;
-      
+
       // Zen-inspired mountain layers with warm colors
       const layers = [
         { distance: -50, height: 40, color: 0xf2ede8, opacity: 1 },
@@ -247,16 +247,16 @@ export const YogaHeroSection = () => {
       layers.forEach((layer, index) => {
         const points = [];
         const segments = 40;
-        
+
         for (let i = 0; i <= segments; i++) {
           const x = (i / segments - 0.5) * 800;
           // Gentler, more flowing mountain shapes
-          const y = Math.sin(i * 0.15) * layer.height * 0.8 + 
-                   Math.sin(i * 0.08) * layer.height * 0.4 +
-                   Math.random() * layer.height * 0.1 - 80;
+          const y = Math.sin(i * 0.15) * layer.height * 0.8 +
+            Math.sin(i * 0.08) * layer.height * 0.4 +
+            Math.random() * layer.height * 0.1 - 80;
           points.push(new THREE.Vector2(x, y));
         }
-        
+
         points.push(new THREE.Vector2(4000, -200));
         points.push(new THREE.Vector2(-4000, -200));
 
@@ -280,7 +280,7 @@ export const YogaHeroSection = () => {
 
     const createPeacefulAtmosphere = () => {
       const { current: refs } = threeRefs;
-      
+
       const geometry = new THREE.SphereGeometry(500, 32, 32);
       const material = new THREE.ShaderMaterial({
         uniforms: {
@@ -324,7 +324,7 @@ export const YogaHeroSection = () => {
     const animate = () => {
       const { current: refs } = threeRefs;
       refs.animationId = requestAnimationFrame(animate);
-      
+
       const time = Date.now() * 0.001;
 
       // Update floating particles
@@ -342,15 +342,15 @@ export const YogaHeroSection = () => {
       // Smooth camera movement
       if (refs.camera && refs.targetCameraX !== undefined) {
         const smoothingFactor = 0.03; // Even smoother for zen-like movement
-        
+
         smoothCameraPos.current.x += (refs.targetCameraX - smoothCameraPos.current.x) * smoothingFactor;
         smoothCameraPos.current.y += (refs.targetCameraY - smoothCameraPos.current.y) * smoothingFactor;
         smoothCameraPos.current.z += (refs.targetCameraZ - smoothCameraPos.current.z) * smoothingFactor;
-        
+
         // Gentle breathing-like motion
         const breathX = Math.sin(time * 0.05) * 1;
         const breathY = Math.cos(time * 0.08) * 0.5;
-        
+
         refs.camera.position.x = smoothCameraPos.current.x + breathX;
         refs.camera.position.y = smoothCameraPos.current.y + breathY;
         refs.camera.position.z = smoothCameraPos.current.z;
@@ -386,7 +386,7 @@ export const YogaHeroSection = () => {
     // Cleanup
     return () => {
       const { current: refs } = threeRefs;
-      
+
       if (refs.animationId) {
         cancelAnimationFrame(refs.animationId);
       }
@@ -427,7 +427,7 @@ export const YogaHeroSection = () => {
   // GSAP Animations
   useEffect(() => {
     if (!isReady) return;
-    
+
     gsap.set([titleRef.current, subtitleRef.current, scrollProgressRef.current, ctaRef.current], {
       visibility: 'visible'
     });
@@ -486,35 +486,35 @@ export const YogaHeroSection = () => {
       const scrollY = window.scrollY;
       const heroHeight = window.innerHeight;
       const progress = Math.min(scrollY / (heroHeight * 0.8), 1); // Start fading at 80% of hero height
-      
+
       setScrollProgress(progress);
 
       const { current: refs } = threeRefs;
-      
+
       // Calculate opacity for fade out effect
       const fadeOpacity = Math.max(0, 1 - progress * 1.5);
-      
+
       // Apply fade to canvas
       if (canvasRef.current) {
         canvasRef.current.style.opacity = fadeOpacity;
       }
-      
+
       // Apply fade to content
       if (titleRef.current) {
         titleRef.current.style.opacity = fadeOpacity;
         titleRef.current.style.transform = `translateY(${progress * -50}px) scale(${1 - progress * 0.2})`;
       }
-      
+
       if (subtitleRef.current) {
         subtitleRef.current.style.opacity = fadeOpacity;
         subtitleRef.current.style.transform = `translateY(${progress * -30}px)`;
       }
-      
+
       if (ctaRef.current) {
         ctaRef.current.style.opacity = fadeOpacity;
         ctaRef.current.style.transform = `translateY(${progress * -20}px)`;
       }
-      
+
       if (scrollProgressRef.current) {
         scrollProgressRef.current.style.opacity = fadeOpacity;
       }
@@ -536,7 +536,7 @@ export const YogaHeroSection = () => {
           particleField.material.opacity = fadeOpacity;
         }
       });
-      
+
       // Move mountains with scroll
       refs.mountains.forEach((mountain, i) => {
         const speed = 0.1 + i * 0.05;
@@ -545,7 +545,7 @@ export const YogaHeroSection = () => {
           mountain.material.opacity = fadeOpacity * mountain.userData.baseOpacity;
         }
       });
-      
+
       if (refs.lotus) {
         refs.lotus.position.z = -800 + scrollY * 0.3;
         if (refs.lotus.material && refs.lotus.material.uniforms) {
@@ -556,20 +556,20 @@ export const YogaHeroSection = () => {
 
     window.addEventListener('scroll', handleScroll);
     handleScroll();
-    
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <div ref={containerRef} className="yoga-hero-container">
       <canvas ref={canvasRef} className="yoga-hero-canvas" />
-      
+
       {/* Main content */}
       <div className="yoga-hero-content">
         <h1 ref={titleRef} className="yoga-hero-title" style={{ visibility: 'hidden' }}>
           BREATHE
         </h1>
-        
+
         <div ref={subtitleRef} className="yoga-hero-subtitle" style={{ visibility: 'hidden' }}>
           <p className="subtitle-line">
             Transform your life through ancient wisdom
@@ -581,7 +581,7 @@ export const YogaHeroSection = () => {
         </div>
 
         {/* CTA Buttons */}
-       {/*  <div ref={ctaRef} className="yoga-hero-cta" style={{ visibility: 'hidden' }}>
+        {/*  <div ref={ctaRef} className="yoga-hero-cta" style={{ visibility: 'hidden' }}>
           <Link to="/services" className="cta-primary">
             Begin Your Journey
           </Link>
@@ -591,7 +591,7 @@ export const YogaHeroSection = () => {
         </div> */}
 
         {/* Floating Action Buttons */}
-        <div className="mt-44 md:mt-0" style={{ 
+        <div className="mt-44 md:mt-0" style={{
           opacity: scrollProgress < 0.3 ? 1 : 0,
           visibility: scrollProgress < 0.3 ? 'visible' : 'hidden',
           pointerEvents: scrollProgress < 0.3 ? 'auto' : 'none'
@@ -600,27 +600,27 @@ export const YogaHeroSection = () => {
             <span className="credentials-text">Certified YTTC-500 | Transforming Lives Since 2014</span>
           </div>
           <div className="floating-buttons">
-          
 
 
-<a 
-  href="https://docs.google.com/forms/d/e/1FAIpQLSdC7gotFoh3hJbzKwj7QiF4oaObg2gjVGnNS4xVQIM-mmOsUQ/viewform"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="floating-btn trial-btn group"
->
-  <FaLeaf className="btn-icon" />
-  <span className="btn-text">Start Free Trial</span>
-  <FaArrowRightLong className="btn-arrow" />
-</a>
 
-<Link 
-  to="/batch-timings" 
-  className="floating-btn session-btn"
->
-  <FaRegCalendarCheck className="btn-icon" />
-  <span className="btn-text">Book a Session</span>
-</Link>
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdC7gotFoh3hJbzKwj7QiF4oaObg2gjVGnNS4xVQIM-mmOsUQ/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="floating-btn trial-btn group"
+            >
+              <FaLeaf className="btn-icon" />
+              <span className="btn-text">Start Free Trial</span>
+              <FaArrowRightLong className="btn-arrow" />
+            </a>
+
+            <Link
+              to="/batch-timings"
+              className="floating-btn session-btn"
+            >
+              <FaRegCalendarCheck className="btn-icon" />
+              <span className="btn-text">Book a Session</span>
+            </Link>
           </div>
         </div>
       </div>
@@ -629,8 +629,8 @@ export const YogaHeroSection = () => {
       <div ref={scrollProgressRef} className="yoga-scroll-progress" style={{ visibility: 'hidden' }}>
         <div className="scroll-text">SCROLL</div>
         <div className="progress-track">
-          <div 
-            className="progress-fill" 
+          <div
+            className="progress-fill"
             style={{ width: `${scrollProgress * 100}%` }}
           />
         </div>

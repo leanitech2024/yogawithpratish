@@ -37,7 +37,7 @@ const Hero = () => {
                             display: 'inline-block',
                             fontWeight: '500'
                         }}>
-                            Book a Session
+                            Private Session
                         </Link>
                         <Link to="/demo" className="outline-button" style={{
                             padding: '12px 24px',

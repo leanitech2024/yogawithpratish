@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { ChevronDown, ChevronUp, Circle } from "lucide-react";
 
-// Data Structure
+// Data Structure (Same source data, but we will flatten it for display)
 const libraryData = {
   asanas: [
     {
       level: "Essential Asanas (20 Poses)",
-      color: "green",
       items: [
         "Mountain Pose (Tadasana)",
         "Tree Pose (Vrikshasana)",
@@ -17,26 +16,35 @@ const libraryData = {
         "Cobra Pose (Bhujangasana)",
         "Bridge Pose (Setu Bandhasana)",
         "Seated Forward Fold",
+        "Easy Pose (Sukhasana)",
+        "Triangle Pose (Trikonasana)",
+        "Garland Pose (Malasana)",
+        "Happy Baby Pose",
+        "Camel Pose (Ustrasana)",
+        "Warrior III (Virabhadrasana III)",
+        "Crow Pose (Bakasana)",
+        "Boat Pose (Navasana)",
       ],
     },
     {
-      level: "Intermediate (20 Asanas)",
-      color: "yellow",
+      level: "Intermediate",
       items: [
-        "Warrior III (Virabhadrasana III)",
         "Side Plank (Vasisthasana)",
-        "Crow Pose (Bakasana)",
         "Four-Limbed Staff (Chaturanga)",
-        "Boat Pose (Navasana)",
         "Eagle Pose (Garudasana)",
         "Revolved Triangle",
         "Half Moon Pose",
         "Wheel Pose (Urdhva Dhanurasana)",
+        "Corpse Pose (Shavasana)",
+        "Standing Forward Fold",
+        "Plank Pose",
+        "Legs Up the Wall",
+        "Butterfly Pose",
+        "Fish Pose (Matsyasana)",
       ],
     },
     {
-      level: "Advanced (20 Asanas)",
-      color: "red",
+      level: "Advanced",
       items: [
         "Handstand (Adho Mukha Vrksasana)",
         "Scorpion Pose (Vrschikasana)",
@@ -52,8 +60,7 @@ const libraryData = {
   ],
   pranayamas: [
     {
-      level: "Foundation Techniques (16 Methods)",
-      color: "green",
+      level: "Foundation",
       items: [
         "Natural Breath Observation",
         "Three-Part Breath (Dirga Pranayama)",
@@ -67,8 +74,7 @@ const libraryData = {
       ],
     },
     {
-      level: "Intermediate (17 Techniques)",
-      color: "yellow",
+      level: "Intermediate",
       items: [
         "Skull Shining (Kapalabhati)",
         "Bellows Breath (Bhastrika)",
@@ -82,8 +88,7 @@ const libraryData = {
       ],
     },
     {
-      level: "Advanced (17 Techniques)",
-      color: "red",
+      level: "Advanced",
       items: [
         "Complete Breath Retention (Kumbhaka)",
         "Advanced Kapalabhati",
@@ -99,54 +104,21 @@ const libraryData = {
   ],
 };
 
-// Color Theme Helper
-const getColorTheme = (color) => {
-  switch (color) {
-    case "green":
-      return {
-        dot: "text-emerald-500 fill-emerald-500",
-        border: "group-hover:border-emerald-200",
-        bgOpen: "bg-emerald-50/50",
-        text: "text-emerald-900",
-      };
-    case "yellow":
-      return {
-        dot: "text-amber-400 fill-amber-400",
-        border: "group-hover:border-amber-200",
-        bgOpen: "bg-amber-50/50",
-        text: "text-amber-900",
-      };
-    case "red":
-      return {
-        dot: "text-rose-500 fill-rose-500",
-        border: "group-hover:border-rose-200",
-        bgOpen: "bg-rose-50/50",
-        text: "text-rose-900",
-      };
-    default:
-      return {
-        dot: "text-gray-500",
-        border: "border-gray-200",
-        bgOpen: "bg-gray-50",
-        text: "text-gray-900",
-      };
-  }
-};
-
-const AccordionItem = ({ data }) => {
+const Accordion = ({ title, dotColor, items, themeColor }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const theme = getColorTheme(data.color);
 
   return (
-    <div className={`mb-4 border border-gray-200 rounded-lg overflow-hidden transition-all duration-300 ${isOpen ? 'shadow-sm' : ''}`}>
+    <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden transition-all duration-300">
+      {/* Header */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full flex items-center justify-between p-4 bg-white hover:bg-gray-50 transition-colors group ${theme.text}`}
+        className="w-full flex items-center justify-between p-6 bg-white hover:bg-gray-50 transition-colors"
       >
-        <div className="flex items-center gap-3">
-          <Circle className={`w-3 h-3 ${theme.dot}`} />
-          <span className="font-medium text-left text-gray-800">{data.level}</span>
+        <div className="flex items-center gap-4">
+          <Circle className={`w-4 h-4 fill-current ${dotColor}`} />
+          <span className="text-lg font-medium text-gray-800">{title}</span>
         </div>
+        
         {isOpen ? (
           <ChevronUp className="w-5 h-5 text-gray-400" />
         ) : (
@@ -154,19 +126,19 @@ const AccordionItem = ({ data }) => {
         )}
       </button>
 
-      {/* Expanded Content */}
+      {/* Expanded Content - 2 Column Grid */}
       <div
-        className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        className={`transition-all duration-300 ease-in-out ${
+          isOpen ? "max-h-[1000px] opacity-100 border-t border-gray-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="overflow-hidden">
-          <ul className={`p-4 pt-0 space-y-2 ${theme.bgOpen}`}>
-            <hr className="border-gray-100 mb-3" />
-            {data.items.map((item, idx) => (
-              <li key={idx} className="flex items-start gap-2 text-sm text-gray-600 pl-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-gray-400 mt-1.5 shrink-0" />
-                {item}
+        <div className="p-8 bg-white">
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-12">
+            {items.map((item, index) => (
+              <li key={index} className="flex items-start gap-3">
+                {/* Small Bullet Dot */}
+                <span className={`w-2 h-2 rounded-full mt-2 shrink-0 ${themeColor}`} />
+                <span className="text-gray-500 font-light text-base">{item}</span>
               </li>
             ))}
           </ul>
@@ -177,47 +149,43 @@ const AccordionItem = ({ data }) => {
 };
 
 const PracticeLibrary = () => {
+  // Helper to flatten the nested arrays into one long list for the grid
+  const allAsanas = libraryData.asanas.flatMap(category => category.items);
+  const allPranayamas = libraryData.pranayamas.flatMap(category => category.items);
+
   return (
-    <section className="py-20 bg-[#FAFAFA]">
-      <div className="container mx-auto px-4 max-w-6xl">
+    <section className="py-20 bg-[#FAFAFA] min-h-screen">
+      <div className="container mx-auto px-4 max-w-4xl">
+        
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif text-[#2D3748] mb-4">
-            Complete <span className="text-orange-500">Practice Library</span>
+          <h2 className="text-4xl md:text-6xl font-serif text-[#2D3748] mb-4">
+            Complete <span className="text-[#d4a373]">Practice Library</span>
           </h2>
-          {/* Underline */}
-          <div className="w-16 h-1 bg-green-700 mx-auto mb-6"></div>
+          <div className="w-16 h-1 bg-[#3a5a40] mx-auto mb-6"></div>
           <p className="text-gray-500 text-lg font-light">
-            Access our comprehensive collection of 60+ Asanas and 50+ Pranayamas
+            Access our entire collection of 60+ Asanas and 50+ Pranayamas in one place.
           </p>
         </div>
 
-        {/* Two Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+        {/* Stacked Accordions */}
+        <div className="flex flex-col gap-6">
           
-          {/* Column 1: Asanas */}
-          <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100 h-fit">
-            <h3 className="text-2xl font-serif text-center mb-8 text-[#2D3748]">
-              60+ <span className="text-orange-400">Asanas</span>
-            </h3>
-            <div className="space-y-2">
-              {libraryData.asanas.map((category, index) => (
-                <AccordionItem key={index} data={category} />
-              ))}
-            </div>
-          </div>
+          {/* Asanas */}
+          <Accordion 
+            title="60+ Asanas" 
+            dotColor="text-[#d4a373]" // Beige Icon
+            themeColor="bg-[#d4a373]" // Beige Bullets
+            items={allAsanas} 
+          />
 
-          {/* Column 2: Pranayamas */}
-          <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100 h-fit">
-            <h3 className="text-2xl font-serif text-center mb-8 text-[#2D3748]">
-              50+ <span className="text-green-700">Pranayamas</span>
-            </h3>
-            <div className="space-y-2">
-              {libraryData.pranayamas.map((category, index) => (
-                <AccordionItem key={index} data={category} />
-              ))}
-            </div>
-          </div>
+          {/* Pranayamas */}
+          <Accordion 
+            title="50+ Pranayamas" 
+            dotColor="text-[#3a5a40]" // Green Icon
+            themeColor="bg-[#3a5a40]" // Green Bullets
+            items={allPranayamas} 
+          />
 
         </div>
       </div>
