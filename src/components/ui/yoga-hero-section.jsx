@@ -597,7 +597,7 @@ export const YogaHeroSection = () => {
           pointerEvents: scrollProgress < 0.3 ? 'auto' : 'none'
         }}>
           <div className="credentials-banner mb-8">
-            <span className="credentials-text">Certified YTTC-200 • Transforming Lives Since 2014</span>
+            <span className="credentials-text">Certified YTTC-500 | Transforming Lives Since 2014</span>
           </div>
           <div className="floating-buttons">
           

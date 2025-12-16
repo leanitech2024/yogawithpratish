@@ -7,7 +7,7 @@ import { Separator } from './ui/separator';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Heart, Users, Calendar, Award, Flower, Brain, Mail, Phone, Star, Sparkles } from 'lucide-react';
 import { FloatingParticles } from './ui/FloatingParticles';
-import aboutImg from "../assets/images/photo-1724833377978-ed06f4d478cd.jpeg";
+import aboutImg from "../assets/images/pratish.jpeg";
 import '../components/ui/FloatingParticles.css';
 
 const AnimatedCard = ({ children, delay = 0 }) => {
@@ -55,7 +55,7 @@ function Aboutme() {
     email: "pratishdani40@gmail.com",
     experience: {
       practicing: 12,
-      teaching: 8
+      teaching: 10
     },
     specialties: [
       "Hatha Yoga",
