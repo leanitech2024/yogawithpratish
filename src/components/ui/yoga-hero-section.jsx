@@ -619,7 +619,7 @@ export const YogaHeroSection = () => {
               className="floating-btn session-btn"
             >
               <FaRegCalendarCheck className="btn-icon" />
-              <span className="btn-text">Book a Session</span>
+              <span className="btn-text">Private Session</span>
             </Link>
           </div>
         </div>
