@@ -291,7 +291,7 @@ const MyTeachings = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 { name: "Bhramari", icon: "🐝", description: "Humming Bee Breath" },
-                { name: "Vashishta", icon: "🌬️", description: "Right Nostril Breathing" },
+                { name: "Suryabhedan", icon: "🌬️", description: "Right Nostril Breathing" },
                 { name: "Shavasana", icon: "🛌", description: "Relaxation Pose" },
                 { name: "Combination", icon: "🔄", description: "Vashishta + Bhramari" }
               ].map((pranayam, index) => (

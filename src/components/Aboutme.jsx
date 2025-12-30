@@ -50,7 +50,7 @@ function Aboutme() {
   const instructorData = {
     name: "Pratish",
     title: "Well experienced certified international yoga instructor",
-    description: "My name is Pratish and I am a certified international yoga instructor with years of experience in helping people discover the transformative power of yoga. I am passionate about guiding students through their yoga journey to improve their physical health, mental clarity, and spiritual well-being.",
+    description: "Namaste, I’m Pratish A Yoga Alliance–registered RYT-500 Certified International Yoga Teacher from India, with 10+ years of global experience in helping people discover the transformative power of yoga. I am passionate about guiding students through their yoga journey to improve their physical health, mental clarity and spiritual well-being.",
     phone: "9898018396",
     email: "pratishdani40@gmail.com",
     experience: {
@@ -64,7 +64,7 @@ function Aboutme() {
       "Breathwork",
       "Stress Relief",
       "Beginner Friendly",
-      "Advanced Poses",
+      "Yoga For Weight Loss",
       "Prenatal Yoga"
     ],
     achievements: [
