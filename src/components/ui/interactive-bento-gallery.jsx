@@ -73,10 +73,10 @@ const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
     <div className="container mx-auto px-4 py-16 max-w-7xl">
       {/* Header */}
       <div className="mb-16 text-center">
-        <h2 className="text-4xl md:text-5xl font-serif text-[#2D3748] mb-4">
+        <h2 className="text-4xl md:text-7xl font-serif text-[#2D3748] mb-4">
           {title}
         </h2>
-        <p className="text-gray-500 text-lg max-w-2xl mx-auto leading-relaxed">
+        <p className="text-amber-600 text-xl max-w-2xl mx-auto leading-relaxed">
           {description}
         </p>
       </div>
