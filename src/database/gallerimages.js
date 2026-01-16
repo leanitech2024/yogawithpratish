@@ -37,7 +37,7 @@ import yogmurasanImg from '../assets/images/gallery/Yogmurasan.jpeg';
 
 
   export const yogaMediaItems = [
-    {
+  /*   {
       id: 1,
       type: "image",
       title: "Morning Yoga Flow",
@@ -124,7 +124,7 @@ import yogmurasanImg from '../assets/images/gallery/Yogmurasan.jpeg';
       desc: "Embrace holistic health",
       url: tenImg,
       
-    },
+    }, */
   {
     id: 12,
     type: "image",
