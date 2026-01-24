@@ -5,14 +5,14 @@ import { Badge } from '../components/ui/badge';
 import { Link } from 'react-router-dom';
 
 const batchTimings = [
-  { time: "6:00 - 7:00 AM", status: "available", spots: 3 },
-  { time: "7:15 - 8:15 AM", status: "available", spots: 7 },
-  { time: "8:30 - 9:30 AM", status: "available", spots: 5 },
-  { time: "10:00 - 11:00 AM", status: "available", spots: 2 },
-  { time: "5:00 - 6:00 PM", status: "available", spots: 4 },
-  { time: "6:15 - 7:15 PM", status: "available", spots: 8 },
-  { time: "7:30 - 8:30 PM", status: "available", spots: 6 },
-  { time: "9:00 - 10:00 PM", status: "available", spots: 3 }
+  { time: "6:00 AM - 7:00 AM", status: "available", spots: 3 },
+  { time: "7:15 AM - 8:15 AM", status: "available", spots: 7 },
+  { time: "8:30 AM - 9:30 AM", status: "available", spots: 5 },
+  { time: "9:45 AM - 10:45 AM", status: "available", spots: 2 },
+  { time: "3:00 PM - 4:00 PM", status: "available", spots: 4 },
+  { time: "4:15 PM - 5:15 PM", status: "available", spots: 8 },
+  { time: "5:30 PM - 6:30 PM", status: "available", spots: 6 },
+  { time: "6:45 PM - 7:45 PM", status: "available", spots: 3 }
 ];
 
 const timeZones = [
