@@ -42,22 +42,24 @@ function Navbar() {
     <div className="navbar-container">
       <nav className={isOpen ? "navbar expanded" : "navbar"}>
         <div className="logo">
-          <Link to="/" onClick={() => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-            setIsOpen(false);
-          }}>
-            <img 
-              src={logo} 
-              alt="Yoga with Pratish" 
+          <Link
+            to="/"
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              setIsOpen(false);
+            }}
+          >
+            <img
+              src={logo}
+              alt="Yoga with Pratish"
               style={{
-                height: '80px',
-                width: '80px',
-               
-                objectFit: 'cover',
-                
-                transition: 'transform 0.3s ease'
+                height: "80px",
+                width: "80px",
+
+                objectFit: "cover",
+
+                transition: "transform 0.3s ease",
               }}
-             
             />
           </Link>
         </div>
@@ -76,7 +78,9 @@ function Navbar() {
             <li className="item">
               <NavLink
                 to="/aboutme"
-                className={({ isActive }) => `links link-color ${isActive ? "active-link" : ""}`}
+                className={({ isActive }) =>
+                  `links link-color ${isActive ? "active-link" : ""}`
+                }
                 onClick={toggleNav}
               >
                 About
@@ -85,7 +89,9 @@ function Navbar() {
             <li className="item">
               <NavLink
                 to="/my-teachings"
-                className={({ isActive }) => `links link-color ${isActive ? "active-link" : ""}`}
+                className={({ isActive }) =>
+                  `links link-color ${isActive ? "active-link" : ""}`
+                }
                 onClick={toggleNav}
               >
                 My Teachings
@@ -94,7 +100,9 @@ function Navbar() {
             <li className="item">
               <NavLink
                 to="/services"
-                className={({ isActive }) => `links link-color ${isActive ? "active-link" : ""}`}
+                className={({ isActive }) =>
+                  `links link-color ${isActive ? "active-link" : ""}`
+                }
                 onClick={toggleNav}
               >
                 Services
@@ -103,17 +111,32 @@ function Navbar() {
             <li className="item">
               <NavLink
                 to="/batch-timings"
-                className={({ isActive }) => `links link-color ${isActive ? "active-link" : ""}`}
+                className={({ isActive }) =>
+                  `links link-color ${isActive ? "active-link" : ""}`
+                }
                 onClick={toggleNav}
               >
                 Batch Timings
+              </NavLink>
+            </li>
+            <li className="item">
+              <NavLink
+                to="/blogs"
+                className={({ isActive }) =>
+                  `links link-color ${isActive ? "active-link" : ""}`
+                }
+                onClick={toggleNav}
+              >
+                Blogs
               </NavLink>
             </li>
             <li className="contact-btn item">
               <button>
                 <NavLink
                   to="/contact"
-                  className={({ isActive }) => `links ${isActive ? "active-link" : ""}`}
+                  className={({ isActive }) =>
+                    `links ${isActive ? "active-link" : ""}`
+                  }
                   onClick={toggleNav}
                 >
                   Contact

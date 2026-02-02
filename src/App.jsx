@@ -7,8 +7,6 @@ import { Element } from "react-scroll"; // Import Element from react-scroll
 import Aboutme from "./components/Aboutme";
 import Navbar from "./components/Navbar";
 import Services from "./components/Services";
-import Pricing from "./components/Pricing";
-import WellnessSection from "./components/WellnessSection";
 import TeachingsSection from "./components/TeachingsSection";
 import ClassFlowSection from "./components/ClassFlowSection";
 import YouTubeSection from "./components/YouTubeSection";
@@ -34,6 +32,8 @@ import Ourteam from "./components/Ourteam";
 import LivingInHarmony from "./components/LivingInHarmony.jsx";
 import NourishingWisdomSection from "./components/NourishingWisdomSection.jsx";
 import PracticeLibrary from "./components/PracticeLibrary.jsx";
+import Blogs from "./pages/Blogs";
+import BlogPost from "./pages/BlogPost";
 
 function App() {
   return (
@@ -41,36 +41,38 @@ function App() {
       <MyContextProvider>
         <BrowserRouter>
           {/* <AuthProvider> */}
-            <Navbar />
-            <Routes>
-              {/* Use Element to wrap the Home component */}
-              <Route
-                path="/"
-                element={
-                  <Element name="home-section">
-                    <Home />
-                  </Element>
-                }
-              />
-              <Route path="/aboutme" element={<Aboutme />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/contacts" element={<Contacts />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/cart" element={<Cart />} />
+          <Navbar />
+          <Routes>
+            {/* Use Element to wrap the Home component */}
+            <Route
+              path="/"
+              element={
+                <Element name="home-section">
+                  <Home />
+                </Element>
+              }
+            />
+            <Route path="/aboutme" element={<Aboutme />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/contacts" element={<Contacts />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/cart" element={<Cart />} />
 
-              <Route path="/demo" element={<Demo />} />
-              <Route path="/gallery" element={<Gallery />} />
-              <Route path="/feedback" element={<Feedback />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/user" element={<User />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/terms-conditions" element={<TermsConditions />} />
-              <Route path="/my-teachings" element={<MyTeachings />} />
-              <Route path="/batch-timings" element={<BatchTimings />} />
-              <Route path="/free-trial" element={<FreeTrial />} />
-            </Routes>
-            <Footer />
+            <Route path="/demo" element={<Demo />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/feedback" element={<Feedback />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/user" element={<User />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-conditions" element={<TermsConditions />} />
+            <Route path="/my-teachings" element={<MyTeachings />} />
+            <Route path="/batch-timings" element={<BatchTimings />} />
+            <Route path="/free-trial" element={<FreeTrial />} />
+            <Route path="/blogs" element={<Blogs />} />
+            <Route path="/blogs/:slug" element={<BlogPost />} />
+          </Routes>
+          <Footer />
           {/* </AuthProvider> */}
         </BrowserRouter>
       </MyContextProvider>
@@ -83,13 +85,13 @@ function Home() {
     <>
       <Hero />
       <TeachingsSection />
-      <LivingInHarmony/>
-      <NourishingWisdomSection/>
+      <LivingInHarmony />
+      <NourishingWisdomSection />
       <Gallery />
       <ClassFlowSection />
       {/* <WellnessSection /> */}
       <YouTubeSection />
-      <PracticeLibrary/>
+      <PracticeLibrary />
       <Feedback />
       <Contacts />
     </>
