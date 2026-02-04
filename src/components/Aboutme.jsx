@@ -1,14 +1,11 @@
-import React, { useEffect, useRef } from 'react';
-import { motion, useInView, useAnimation } from 'framer-motion';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Badge } from './ui/badge';
-import { Button } from './ui/button';
-import { Separator } from './ui/separator';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
-import { Heart, Users, Calendar, Award, Flower, Brain, Mail, Phone, Star, Sparkles } from 'lucide-react';
-import { FloatingParticles } from './ui/FloatingParticles';
+import { useEffect, useRef } from "react";
+import { motion, useInView, useAnimation } from "framer-motion";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Badge } from "./ui/badge";
+import { Users, Award, Flower, Brain, Mail, Phone, Star } from "lucide-react";
+import { FloatingParticles } from "./ui/FloatingParticles";
 import aboutImg from "../assets/images/pratish.jpeg";
-import '../components/ui/FloatingParticles.css';
+import "../components/ui/FloatingParticles.css";
 
 const AnimatedCard = ({ children, delay = 0 }) => {
   const ref = useRef(null);
@@ -35,9 +32,9 @@ const AnimatedCard = ({ children, delay = 0 }) => {
           transition: {
             duration: 0.8,
             delay: delay,
-            ease: "easeOut"
-          }
-        }
+            ease: "easeOut",
+          },
+        },
       }}
     >
       {children}
@@ -50,12 +47,13 @@ function Aboutme() {
   const instructorData = {
     name: "Pratish",
     title: "Well experienced certified international yoga instructor",
-    description: "Namaste, I’m Pratish, a Yoga Alliance–registered RYT-500 Certified Yoga Teacher and Yoga Therapist, professionally trained at a renowned yoga institute in Rishikesh, India — the Yoga Capital of the World.",
+    description:
+      "Namaste, I’m Pratish, a Yoga Alliance–registered YTTC- 500 Certified Yoga Teacher and Yoga Therapist, professionally trained at a renowned yoga institute in Rishikesh, India — the Yoga Capital of the World.",
     phone: "9898018396",
     email: "pratishdani40@gmail.com",
     experience: {
       practicing: 12,
-      teaching: 10
+      teaching: 10,
     },
     specialties: [
       "Hatha Yoga",
@@ -65,7 +63,7 @@ function Aboutme() {
       "Stress Relief",
       "Beginner Friendly",
       "Yoga For Weight Loss",
-      "Prenatal Yoga"
+      "Prenatal Yoga",
     ],
     achievements: [
       "International Yoga Alliance Certified",
@@ -73,12 +71,12 @@ function Aboutme() {
       "Trauma-Informed Yoga Specialist",
       "800+ Students Taught Globally",
       "Ayurveda & Holistic Health Certified",
-      "Advanced Pranayama Specialist"
+      "Advanced Pranayama Specialist",
     ],
     contact: {
       email: "pratishdani40@gmail.com",
-      phone: "9898018396"
-    }
+      phone: "9898018396",
+    },
   };
 
   return (
@@ -99,10 +97,30 @@ function Aboutme() {
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-50 to-white min-h-[400px] md:min-h-[500px] shadow-2xl border border-gray-100">
             {/* Decorative Elements - Top Left Waves */}
             <div className="absolute top-8 left-8 text-red-400 opacity-70">
-              <svg width="80" height="50" viewBox="0 0 80 50" className="animate-pulse">
-                <path d="M0 15 Q20 5 40 15 Q60 25 80 15" stroke="currentColor" strokeWidth="3" fill="none" />
-                <path d="M0 25 Q20 15 40 25 Q60 35 80 25" stroke="currentColor" strokeWidth="3" fill="none" />
-                <path d="M0 35 Q20 25 40 35 Q60 45 80 35" stroke="currentColor" strokeWidth="3" fill="none" />
+              <svg
+                width="80"
+                height="50"
+                viewBox="0 0 80 50"
+                className="animate-pulse"
+              >
+                <path
+                  d="M0 15 Q20 5 40 15 Q60 25 80 15"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  fill="none"
+                />
+                <path
+                  d="M0 25 Q20 15 40 25 Q60 35 80 25"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  fill="none"
+                />
+                <path
+                  d="M0 35 Q20 25 40 35 Q60 45 80 35"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  fill="none"
+                />
               </svg>
             </div>
 
@@ -112,8 +130,11 @@ function Aboutme() {
             {/* Right Side Vertical Dots */}
             <div className="absolute top-16 right-32 flex flex-col space-y-2">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="w-2 h-2 bg-red-400 rounded-full opacity-70 animate-pulse"
-                  style={{ animationDelay: `${i * 0.2}s` }}></div>
+                <div
+                  key={i}
+                  className="w-2 h-2 bg-red-400 rounded-full opacity-70 animate-pulse"
+                  style={{ animationDelay: `${i * 0.2}s` }}
+                ></div>
               ))}
             </div>
 
@@ -123,8 +144,11 @@ function Aboutme() {
             {/* Bottom Left Dots Pattern */}
             <div className="absolute bottom-12 left-8 grid grid-cols-12 gap-1 opacity-40">
               {[...Array(24)].map((_, i) => (
-                <div key={i} className="w-1.5 h-1.5 bg-red-300 rounded-full animate-pulse"
-                  style={{ animationDelay: `${i * 0.05}s` }}></div>
+                <div
+                  key={i}
+                  className="w-1.5 h-1.5 bg-red-300 rounded-full animate-pulse"
+                  style={{ animationDelay: `${i * 0.05}s` }}
+                ></div>
               ))}
             </div>
 
@@ -147,7 +171,8 @@ function Aboutme() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1, delay: 0.2 }}
                 >
-                  Yoga With<br />
+                  Yoga With
+                  <br />
                   <span className="block">Pratish</span>
                 </motion.h1>
 
@@ -157,7 +182,8 @@ function Aboutme() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1, delay: 0.5 }}
                 >
-                  Well experienced certified<br />
+                  Well experienced certified
+                  <br />
                   international yoga instructor
                 </motion.p>
 
@@ -170,12 +196,16 @@ function Aboutme() {
                 >
                   <div className="flex items-center space-x-3 bg-red-500 px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group">
                     <Phone className="w-5 h-5 text-white" />
-                    <span className="text-white font-medium">{instructorData.phone}</span>
+                    <span className="text-white font-medium">
+                      {instructorData.phone}
+                    </span>
                   </div>
 
                   <div className="flex items-center space-x-3 bg-red-500 px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group">
                     <Mail className="w-5 h-5 text-white" />
-                    <span className="text-white font-medium text-sm">{instructorData.email}</span>
+                    <span className="text-white font-medium text-sm">
+                      {instructorData.email}
+                    </span>
                   </div>
                 </motion.div>
               </div>
@@ -198,7 +228,11 @@ function Aboutme() {
                     <motion.div
                       className="relative w-full h-full rounded-full overflow-hidden shadow-2xl border-4 border-white"
                       whileHover={{ scale: 1.05 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 20,
+                      }}
                     >
                       <img
                         src={aboutImg}
@@ -281,7 +315,9 @@ function Aboutme() {
                     <h3 className="text-3xl font-bold text-slate-800 mb-1">
                       {instructorData.experience.teaching}+ Years
                     </h3>
-                    <p className="text-slate-600 text-lg">Teaching Experience</p>
+                    <p className="text-slate-600 text-lg">
+                      Teaching Experience
+                    </p>
                   </div>
                 </motion.div>
               </CardContent>
@@ -347,7 +383,9 @@ function Aboutme() {
                     whileHover={{ x: 10 }}
                   >
                     <Star className="w-5 h-5 text-amber-500 flex-shrink-0" />
-                    <span className="text-slate-700 font-medium">{achievement}</span>
+                    <span className="text-slate-700 font-medium">
+                      {achievement}
+                    </span>
                   </motion.div>
                 ))}
               </div>
