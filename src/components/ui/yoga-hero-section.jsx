@@ -1,10 +1,9 @@
 // YogaHeroSection.jsx - Yoga-themed version of the horizon hero
-import React, { useEffect, useRef, useState } from 'react';
-import * as THREE from 'three';
-import { gsap } from 'gsap';
-import { Link } from 'react-router-dom';
-import { FaLeaf, FaRegCalendarCheck, FaArrowRightLong } from "react-icons/fa6";
-
+import React, { useEffect, useRef, useState } from "react";
+import * as THREE from "three";
+import { gsap } from "gsap";
+import { Link } from "react-router-dom";
+import { FaLeaf, FaWhatsapp, FaArrowRightLong } from "react-icons/fa6";
 
 export const YogaHeroSection = () => {
   const containerRef = useRef(null);
@@ -28,7 +27,7 @@ export const YogaHeroSection = () => {
     particles: [],
     lotus: null,
     mountains: [],
-    animationId: null
+    animationId: null,
   });
 
   // Initialize Three.js with yoga theme
@@ -45,7 +44,7 @@ export const YogaHeroSection = () => {
         75,
         window.innerWidth / window.innerHeight,
         0.1,
-        2000
+        2000,
       );
       refs.camera.position.z = 100;
       refs.camera.position.y = 20;
@@ -54,7 +53,7 @@ export const YogaHeroSection = () => {
       refs.renderer = new THREE.WebGLRenderer({
         canvas: canvasRef.current,
         antialias: true,
-        alpha: true
+        alpha: true,
       });
       refs.renderer.setSize(window.innerWidth, window.innerHeight);
       refs.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -118,14 +117,17 @@ export const YogaHeroSection = () => {
           sizes[j] = Math.random() * 1.5 + 0.5;
         }
 
-        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-        geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+        geometry.setAttribute(
+          "position",
+          new THREE.BufferAttribute(positions, 3),
+        );
+        geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+        geometry.setAttribute("size", new THREE.BufferAttribute(sizes, 1));
 
         const material = new THREE.ShaderMaterial({
           uniforms: {
             time: { value: 0 },
-            depth: { value: i }
+            depth: { value: i },
           },
           vertexShader: `
             attribute float size;
@@ -165,7 +167,7 @@ export const YogaHeroSection = () => {
           `,
           transparent: true,
           blending: THREE.AdditiveBlending,
-          depthWrite: false
+          depthWrite: false,
         });
 
         const particles = new THREE.Points(geometry, material);
@@ -183,7 +185,7 @@ export const YogaHeroSection = () => {
           time: { value: 0 },
           color1: { value: new THREE.Color(0xf7f4f1) }, // Cream
           color2: { value: new THREE.Color(0xd4af37) }, // Gold
-          opacity: { value: 0.15 }
+          opacity: { value: 0.15 },
         },
         vertexShader: `
           varying vec2 vUv;
@@ -223,7 +225,7 @@ export const YogaHeroSection = () => {
         transparent: true,
         blending: THREE.AdditiveBlending,
         side: THREE.DoubleSide,
-        depthWrite: false
+        depthWrite: false,
       });
 
       const lotus = new THREE.Mesh(geometry, material);
@@ -241,7 +243,7 @@ export const YogaHeroSection = () => {
         { distance: -50, height: 40, color: 0xf2ede8, opacity: 1 },
         { distance: -80, height: 60, color: 0xede8e2, opacity: 0.9 },
         { distance: -110, height: 80, color: 0xe8e0d5, opacity: 0.7 },
-        { distance: -140, height: 100, color: 0xd4af37, opacity: 0.5 }
+        { distance: -140, height: 100, color: 0xd4af37, opacity: 0.5 },
       ];
 
       layers.forEach((layer, index) => {
@@ -251,9 +253,11 @@ export const YogaHeroSection = () => {
         for (let i = 0; i <= segments; i++) {
           const x = (i / segments - 0.5) * 800;
           // Gentler, more flowing mountain shapes
-          const y = Math.sin(i * 0.15) * layer.height * 0.8 +
+          const y =
+            Math.sin(i * 0.15) * layer.height * 0.8 +
             Math.sin(i * 0.08) * layer.height * 0.4 +
-            Math.random() * layer.height * 0.1 - 80;
+            Math.random() * layer.height * 0.1 -
+            80;
           points.push(new THREE.Vector2(x, y));
         }
 
@@ -266,13 +270,17 @@ export const YogaHeroSection = () => {
           color: layer.color,
           transparent: true,
           opacity: layer.opacity,
-          side: THREE.DoubleSide
+          side: THREE.DoubleSide,
         });
 
         const mountain = new THREE.Mesh(geometry, material);
         mountain.position.z = layer.distance;
         mountain.position.y = layer.distance * 0.3;
-        mountain.userData = { baseZ: layer.distance, index, baseOpacity: layer.opacity };
+        mountain.userData = {
+          baseZ: layer.distance,
+          index,
+          baseOpacity: layer.opacity,
+        };
         refs.scene.add(mountain);
         refs.mountains.push(mountain);
       });
@@ -284,7 +292,7 @@ export const YogaHeroSection = () => {
       const geometry = new THREE.SphereGeometry(500, 32, 32);
       const material = new THREE.ShaderMaterial({
         uniforms: {
-          time: { value: 0 }
+          time: { value: 0 },
         },
         vertexShader: `
           varying vec3 vNormal;
@@ -314,7 +322,7 @@ export const YogaHeroSection = () => {
         `,
         side: THREE.BackSide,
         blending: THREE.AdditiveBlending,
-        transparent: true
+        transparent: true,
       });
 
       const atmosphere = new THREE.Mesh(geometry, material);
@@ -343,9 +351,12 @@ export const YogaHeroSection = () => {
       if (refs.camera && refs.targetCameraX !== undefined) {
         const smoothingFactor = 0.03; // Even smoother for zen-like movement
 
-        smoothCameraPos.current.x += (refs.targetCameraX - smoothCameraPos.current.x) * smoothingFactor;
-        smoothCameraPos.current.y += (refs.targetCameraY - smoothCameraPos.current.y) * smoothingFactor;
-        smoothCameraPos.current.z += (refs.targetCameraZ - smoothCameraPos.current.z) * smoothingFactor;
+        smoothCameraPos.current.x +=
+          (refs.targetCameraX - smoothCameraPos.current.x) * smoothingFactor;
+        smoothCameraPos.current.y +=
+          (refs.targetCameraY - smoothCameraPos.current.y) * smoothingFactor;
+        smoothCameraPos.current.z +=
+          (refs.targetCameraZ - smoothCameraPos.current.z) * smoothingFactor;
 
         // Gentle breathing-like motion
         const breathX = Math.sin(time * 0.05) * 1;
@@ -361,7 +372,7 @@ export const YogaHeroSection = () => {
       refs.mountains.forEach((mountain, i) => {
         const parallaxFactor = 1 + i * 0.3;
         mountain.position.x = Math.sin(time * 0.05) * 1 * parallaxFactor;
-        mountain.position.y = 30 + (Math.cos(time * 0.08) * 0.5 * parallaxFactor);
+        mountain.position.y = 30 + Math.cos(time * 0.08) * 0.5 * parallaxFactor;
       });
 
       if (refs.renderer) {
@@ -381,7 +392,7 @@ export const YogaHeroSection = () => {
       }
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     // Cleanup
     return () => {
@@ -391,15 +402,15 @@ export const YogaHeroSection = () => {
         cancelAnimationFrame(refs.animationId);
       }
 
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
 
       // Dispose resources
-      refs.particles.forEach(particleField => {
+      refs.particles.forEach((particleField) => {
         particleField.geometry.dispose();
         particleField.material.dispose();
       });
 
-      refs.mountains.forEach(mountain => {
+      refs.mountains.forEach((mountain) => {
         mountain.geometry.dispose();
         mountain.material.dispose();
       });
@@ -428,9 +439,17 @@ export const YogaHeroSection = () => {
   useEffect(() => {
     if (!isReady) return;
 
-    gsap.set([titleRef.current, subtitleRef.current, scrollProgressRef.current, ctaRef.current], {
-      visibility: 'visible'
-    });
+    gsap.set(
+      [
+        titleRef.current,
+        subtitleRef.current,
+        scrollProgressRef.current,
+        ctaRef.current,
+      ],
+      {
+        visibility: "visible",
+      },
+    );
 
     const tl = gsap.timeline();
 
@@ -440,39 +459,51 @@ export const YogaHeroSection = () => {
         y: 100,
         opacity: 0,
         duration: 2,
-        ease: "power4.out"
+        ease: "power4.out",
       });
     }
 
     // Animate subtitle
     if (subtitleRef.current) {
-      tl.from(subtitleRef.current, {
-        y: 50,
-        opacity: 0,
-        duration: 1.5,
-        ease: "power3.out"
-      }, "-=1.5");
+      tl.from(
+        subtitleRef.current,
+        {
+          y: 50,
+          opacity: 0,
+          duration: 1.5,
+          ease: "power3.out",
+        },
+        "-=1.5",
+      );
     }
 
     // Animate CTA buttons
     if (ctaRef.current) {
-      tl.from(ctaRef.current.children, {
-        y: 30,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power2.out"
-      }, "-=1");
+      tl.from(
+        ctaRef.current.children,
+        {
+          y: 30,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.2,
+          ease: "power2.out",
+        },
+        "-=1",
+      );
     }
 
     // Animate scroll indicator
     if (scrollProgressRef.current) {
-      tl.from(scrollProgressRef.current, {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        ease: "power2.out"
-      }, "-=0.5");
+      tl.from(
+        scrollProgressRef.current,
+        {
+          opacity: 0,
+          y: 50,
+          duration: 1,
+          ease: "power2.out",
+        },
+        "-=0.5",
+      );
     }
 
     return () => {
@@ -530,7 +561,9 @@ export const YogaHeroSection = () => {
       // Fade out particles as user scrolls past hero
       refs.particles.forEach((particleField) => {
         if (particleField.material.uniforms) {
-          particleField.material.uniforms.opacity = { value: fadeOpacity * 0.8 };
+          particleField.material.uniforms.opacity = {
+            value: fadeOpacity * 0.8,
+          };
         }
         if (particleField.material) {
           particleField.material.opacity = fadeOpacity;
@@ -542,7 +575,8 @@ export const YogaHeroSection = () => {
         const speed = 0.1 + i * 0.05;
         mountain.position.z = mountain.userData.baseZ + scrollY * speed;
         if (mountain.material) {
-          mountain.material.opacity = fadeOpacity * mountain.userData.baseOpacity;
+          mountain.material.opacity =
+            fadeOpacity * mountain.userData.baseOpacity;
         }
       });
 
@@ -554,10 +588,10 @@ export const YogaHeroSection = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     handleScroll();
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -566,14 +600,21 @@ export const YogaHeroSection = () => {
 
       {/* Main content */}
       <div className="yoga-hero-content">
-        <h1 ref={titleRef} className="yoga-hero-title" style={{ visibility: 'hidden' }}>
+        <h1
+          ref={titleRef}
+          className="yoga-hero-title"
+          style={{ visibility: "hidden" }}
+        >
           BREATHE
         </h1>
 
-        <div ref={subtitleRef} className="yoga-hero-subtitle" style={{ visibility: 'hidden' }}>
+        <div
+          ref={subtitleRef}
+          className="yoga-hero-subtitle"
+          style={{ visibility: "hidden" }}
+        >
           <p className="subtitle-line">
             Transform your life through ancient wisdom
-
           </p>
           <p className="subtitle-line">
             Find peace in movement, strength in stillness
@@ -591,18 +632,20 @@ export const YogaHeroSection = () => {
         </div> */}
 
         {/* Floating Action Buttons */}
-        <div className="mt-44 md:mt-0" style={{
-          opacity: scrollProgress < 0.3 ? 1 : 0,
-          visibility: scrollProgress < 0.3 ? 'visible' : 'hidden',
-          pointerEvents: scrollProgress < 0.3 ? 'auto' : 'none'
-        }}>
+        <div
+          className="mt-44 md:mt-0"
+          style={{
+            opacity: scrollProgress < 0.3 ? 1 : 0,
+            visibility: scrollProgress < 0.3 ? "visible" : "hidden",
+            pointerEvents: scrollProgress < 0.3 ? "auto" : "none",
+          }}
+        >
           <div className="credentials-banner mb-8">
-            <span className="credentials-text">Certified YTTC-500 | Transforming Lives Since 2014</span>
+            <span className="credentials-text">
+              Certified YTTC-500 | Transforming Lives Since 2014
+            </span>
           </div>
           <div className="floating-buttons">
-
-
-
             <a
               href="https://docs.google.com/forms/d/e/1FAIpQLSdC7gotFoh3hJbzKwj7QiF4oaObg2gjVGnNS4xVQIM-mmOsUQ/viewform"
               target="_blank"
@@ -614,19 +657,25 @@ export const YogaHeroSection = () => {
               <FaArrowRightLong className="btn-arrow" />
             </a>
 
-            <Link
-              to="/batch-timings"
+            <a
+              href="https://wa.me/919898018396"
+              target="_blank"
+              rel="noopener noreferrer"
               className="floating-btn session-btn"
             >
-              <FaRegCalendarCheck className="btn-icon" />
+              <FaWhatsapp className="btn-icon" />
               <span className="btn-text">Private Session</span>
-            </Link>
+            </a>
           </div>
         </div>
       </div>
 
       {/* Scroll progress indicator */}
-      <div ref={scrollProgressRef} className="yoga-scroll-progress" style={{ visibility: 'hidden' }}>
+      <div
+        ref={scrollProgressRef}
+        className="yoga-scroll-progress"
+        style={{ visibility: "hidden" }}
+      >
         <div className="scroll-text">SCROLL</div>
         <div className="progress-track">
           <div
@@ -635,7 +684,7 @@ export const YogaHeroSection = () => {
           />
         </div>
         <div className="section-counter">
-          {String(Math.floor(scrollProgress * 100)).padStart(2, '0')}%
+          {String(Math.floor(scrollProgress * 100)).padStart(2, "0")}%
         </div>
       </div>
     </div>
