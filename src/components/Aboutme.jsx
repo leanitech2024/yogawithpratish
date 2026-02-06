@@ -194,19 +194,27 @@ function Aboutme() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, delay: 0.8 }}
                 >
-                  <div className="flex items-center space-x-3 bg-red-500 px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group">
+                  <a
+                    href="https://wa.me/919898018396"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex text-decoration-none items-center space-x-3 bg-red-500 px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group"
+                  >
                     <Phone className="w-5 h-5 text-white" />
                     <span className="text-white font-medium">
                       {instructorData.phone}
                     </span>
-                  </div>
+                  </a>
 
-                  <div className="flex items-center space-x-3 bg-red-500 px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group">
+                  <a
+                    href={`mailto:${instructorData.email}`}
+                    className="flex items-center space-x-3 bg-red-500 text-decoration-none px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group"
+                  >
                     <Mail className="w-5 h-5 text-white" />
                     <span className="text-white font-medium text-sm">
                       {instructorData.email}
                     </span>
-                  </div>
+                  </a>
                 </motion.div>
               </div>
 
