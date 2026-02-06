@@ -283,13 +283,16 @@ const BatchTimings = () => {
                   </motion.div>
                   <h3 className="font-bold text-slate-900 mb-2">Need Help Choosing?</h3>
                   <p className="text-sm text-slate-700 mb-4">Contact me for personalized batch recommendations</p>
-                  <motion.button 
+                  <a
+                   href="https://wa.me/919898018396"
+              target="_blank"
+              rel="noopener noreferrer"
                     className="px-6 py-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     Contact Pratish
-                  </motion.button>
+                  </a>
                 </CardContent>
               </Card>
             </motion.div>

@@ -133,6 +133,10 @@ export function PricingSection() {
                   ))}
                 </div>
 
+              
+                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSdC7gotFoh3hJbzKwj7QiF4oaObg2gjVGnNS4xVQIM-mmOsUQ/viewform"
+              target="_blank"
+              rel="noopener noreferrer"> 
                 <Button
                   className={`w-full ${
                     plan.popular
@@ -140,8 +144,9 @@ export function PricingSection() {
                       : "bg-[#3A5A40] hover:bg-[#3A5A40]/80 text-white"
                   }`}
                 >
-                  Start This Plan
-                </Button>
+              Start This Plan
+               </Button></a>
+               
               </CardContent>
             </Card>
           ))}
